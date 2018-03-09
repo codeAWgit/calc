@@ -1,0 +1,19 @@
+.calcBody {
+    margin: 30px 40px 0px 40px;
+    padding: 20px 30px;
+    border: 2px solid grey;
+    font-size: 1.8em;
+}
+
+.calcScreen {
+    margin: 25px 20px 50px 20px;
+    padding: 5px 10px;
+    text-align: right;
+    border: 2px solid black;
+    font-size: .9em;
+}
+
+.bttn {
+    border: 2px solid black;
+    margin: 0px 7px 14px 7px;
+}
