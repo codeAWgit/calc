@@ -3,6 +3,7 @@ let operationInfo = { operator: '', entry: '0' }
 
 function clrEntry(alsoNums) {
     $('.calcScreen').text('0')
+    operationInfo.entry = '0'   
     if (alsoNums) {
         operationInfo = { operator: '', entry: '0' }
     }
@@ -26,19 +27,18 @@ function operation(oprtr) {
         clrEntry()
     }
     else if ( operationInfo.operator == 'plus' ){
-        let result = operationInfo.frstOperand + Number(operationInfo.entry)
+        operationInfo.frstOperand += Number(operationInfo.entry)
+
+        clrEntry()
+        numToScreen( operationInfo.frstOperand.toString() )
 
         operationInfo.entry = '0'
-        clrEntry()
-        numToScreen( result.toString() )
-        operationInfo.frstOperand = result
         operationInfo.operator = oprtr  
     }
     else if ( operationInfo.operator == 'equal' ){
-        let result = operationInfo.frstOperand + Number(operationInfo.entry)
+        operationInfo.frstOperand += Number(operationInfo.entry)
         clrEntry()
-        numToScreen( result.toString() )
-        operationInfo.frstOperand = result
+        numToScreen( operationInfo.frstOperand.toString() )
         operationInfo.operator = oprtr  
     }
 }
