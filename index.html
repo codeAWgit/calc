@@ -30,16 +30,16 @@
                 </div>
                 <div class="container calcButtons">
                     <div class="row text-center">
-                        <div class="col bttn">7</div>
-                        <div class="col bttn">8</div>
-                        <div class="col bttn">9</div>
-                        <div class="col bttn">/</div>
+                        <div class="col bttn" onclick="numToScreen('7')">7</div>
+                        <div class="col bttn" onclick="numToScreen('8')">8</div>
+                        <div class="col bttn" onclick="numToScreen('9')">9</div>
+                        <div class="col bttn" onclick="operation('divide')">/</div>
                     </div>
                     <div class="row text-center">
-                        <div class="col bttn">4</div>
-                        <div class="col bttn">5</div>
-                        <div class="col bttn">6</div>
-                        <div class="col bttn">*</div>
+                        <div class="col bttn" onclick="numToScreen('4')">4</div>
+                        <div class="col bttn" onclick="numToScreen('5')">5</div>
+                        <div class="col bttn" onclick="numToScreen('6')">6</div>
+                        <div class="col bttn" onclick="operation('multiply')">*</div>
                     </div>
                     <div class="row text-center">
                         <div class="col bttn" onclick="numToScreen('1')">1</div>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="row text-center">
                             <div class="col bttn" onclick="clrEntry('all')">AC</div>
-                            <div class="col bttn" onclick="operation('equal')">=</div>
+                            <div class="col bttn" onclick="equalTo()">=</div>
                         </div>
                 </div> <!-- calcButtons -->
             </div> <!-- calcBody -->

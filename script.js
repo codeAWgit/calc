@@ -1,46 +1,106 @@
 'use strict'
-let operationInfo = { operator: '', entry: '0' }
+let operationInfo = { 
+                     operator: '',
+                     entry: '',
+                     firstOperand: 0,
+                     last: 0 
+                    }
 
 function clrEntry(alsoNums) {
     $('.calcScreen').text('0')
-    operationInfo.entry = '0'   
+    operationInfo.entry = ''   
     if (alsoNums) {
-        operationInfo = { operator: '', entry: '0' }
+        operationInfo = { 
+                         operator: '',
+                         entry: '',
+                         firstOperand: 0,
+                         last: 0 
+                        }
     }
 }
 
-function numToScreen(scrNum) {
-   operationInfo.entry += scrNum
+function numToScreen(btnNum) {
+   operationInfo.entry += btnNum
     
-    operationInfo.entry = operationInfo.entry.replace(/[.]+/, '.')
-    operationInfo.entry = operationInfo.entry.replace(/^[0]([1-9])/, '$1')
+    //operationInfo.entry = operationInfo.entry.replace(/[.]+/, '.')
+    //operationInfo.entry = operationInfo.entry.replace(/^[0]([1-9])/, '$1')
     // Decide on a way to get rid of additional places where zeroes can be added.
     $('.calcScreen').text( operationInfo.entry )
-    console.log(operationInfo)
 }
 
-function operation(oprtr) {
+function operation(operator, forEqual = false) {
     if ( !operationInfo.operator ) {
-        operationInfo.frstOperand = +operationInfo.entry
-        operationInfo.operator = oprtr
-        operationInfo.entry = '0'
+        operationInfo.firstOperand = +operationInfo.entry
+        operationInfo.operator = operator
         clrEntry()
     }
     else if ( operationInfo.operator == 'plus' ){
-        operationInfo.frstOperand += Number(operationInfo.entry)
-
-        clrEntry()
-        numToScreen( operationInfo.frstOperand.toString() )
-
-        operationInfo.entry = '0'
-        operationInfo.operator = oprtr  
+        let save = Number( operationInfo.entry )
+        operationInfo.firstOperand += save
+        if ( forEqual && !operationInfo.entry ) {
+            operationInfo.firstOperand += operationInfo.last
+        }
+        commonEntryAndSave( save )
     }
-    else if ( operationInfo.operator == 'equal' ){
-        operationInfo.frstOperand += Number(operationInfo.entry)
-        clrEntry()
-        numToScreen( operationInfo.frstOperand.toString() )
-        operationInfo.operator = oprtr  
+    else if ( operationInfo.operator == 'minus' ){
+        let save = Number( operationInfo.entry )
+        operationInfo.firstOperand -= save
+        if ( forEqual && !operationInfo.entry ) {
+            operationInfo.firstOperand -= operationInfo.last
+        }
+        commonEntryAndSave( save )
     }
+    else if ( operationInfo.operator == 'multiply' ){
+        let save //= Number( operationInfo.entry )
+        // operationInfo.firstOperand *= save
+        if ( forEqual && !operationInfo.entry ) {
+            operationInfo.firstOperand *= operationInfo.last
+        }
+        else {
+            save = Number( operationInfo.entry )
+            operationInfo.firstOperand *= save || 1
+        }
+        commonEntryAndSave( save )
+    }   
+    else if ( operationInfo.operator == 'divide' ){
+        let save //= Number( operationInfo.entry )
+        // operationInfo.firstOperand *= save
+        if ( forEqual && !operationInfo.entry ) {
+            operationInfo.firstOperand /= operationInfo.last
+        }
+        else {
+            save = Number( operationInfo.entry )
+            operationInfo.firstOperand /= save || 1
+        }
+        commonEntryAndSave( save )
+    }      
+
+    function commonEntryAndSave( save ) {
+        operationInfo.entry = ''
+        numToScreen( operationInfo.firstOperand.toString() )
+        operationInfo.entry = ''
+        operationInfo.operator = operator
+
+        operationInfo.last = save || operationInfo.last
+    }
+
+    console.log(operationInfo)
+}
+
+function equalTo () {
+    operation( operationInfo.operator, true )
+    //#region old code for equal. May not need soon. 
+    // let save = Number(operationInfo.entry)
+    // operationInfo.frstOperand += save + Number(operationInfo.last)
+    
+
+    // clrEntry()
+    // numToScreen( operationInfo.frstOperand.toString() )
+
+    // operationInfo.entry = save
+    // operationInfo.operator = oprtr  
+    // console.log(operationInfo)
+    //#endregion
 }
 
 /*
