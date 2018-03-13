@@ -7,7 +7,7 @@ let operationInfo = {
                     }
 
 function clrEntry(alsoNums) {
-    $('.calcScreen').text('0')   // May consider removing small amount of jQuery.
+    document.getElementsByClassName('calcScreen')[0].innerHTML = '0'
     operationInfo.entry = ''   
     if (alsoNums) {
         operationInfo = { 
@@ -27,7 +27,7 @@ function numToScreen(btnNum) {
     operationInfo.entry = operationInfo.entry.replace(/^[.]+/, '0.')
     operationInfo.entry = operationInfo.entry.replace(/([.]\d+)[.]+/, '$1')
 
-    $('.calcScreen').text( operationInfo.entry )
+    document.getElementsByClassName('calcScreen')[0].innerHTML = operationInfo.entry
 }
 
 function operation(operator, forEqual = false) {

@@ -11,7 +11,6 @@
 
     <link rel="stylesheet" href="style.css">
     
-    <script defer="true" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script defer="true" src="script.js"></script>
 
 </head>
@@ -20,45 +19,48 @@
         <div class="row">
             <div class="col"></div>
             <div class="col"></div>
-            <div class="col-md-4 calcBody">
-                <div class="row">
-                    <div class="col"><h2>basic calc</h2></div>
-                </div>
-                <div class="row">
-                        <div class="col calcScreen">0</div>
-                        <!-- Let's get calculating! -->
-                </div>
-                <div class="container calcButtons">
-                    <div class="row text-center">
-                        <div class="col bttn" onclick="numToScreen('7')">7</div>
-                        <div class="col bttn" onclick="numToScreen('8')">8</div>
-                        <div class="col bttn" onclick="numToScreen('9')">9</div>
-                        <div class="col bttn" onclick="operation('divide')">/</div>
+            <div class="col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                <div class="calcBody">
+                    <div class="row">
+                        <div class="col"><h2>basic calc</h2></div>
                     </div>
-                    <div class="row text-center">
-                        <div class="col bttn" onclick="numToScreen('4')">4</div>
-                        <div class="col bttn" onclick="numToScreen('5')">5</div>
-                        <div class="col bttn" onclick="numToScreen('6')">6</div>
-                        <div class="col bttn" onclick="operation('multiply')">*</div>
+                    <div class="row">
+                            <div class="col calcScreen">Let's get calculating!</div>
+                            <!-- Let's get calculating! -->
                     </div>
-                    <div class="row text-center">
-                        <div class="col bttn" onclick="numToScreen('1')">1</div>
-                        <div class="col bttn" onclick="numToScreen('2')">2</div>
-                        <div class="col bttn" onclick="numToScreen('3')">3</div>
-                        <div class="col bttn" onclick="operation('minus')">-</div>
-                    </div>
-                    <div class="row text-center">
-                        <div class="col bttn" onclick="clrEntry('')">CE</div>
-                        <div class="col bttn" onclick="numToScreen('0')">0</div>
-                        <div class="col bttn" onclick="numToScreen('.')">.</div>
-                        <div class="col bttn" onclick="operation('plus')">+</div>
-                    </div>
-                    <div class="row text-center">
-                            <div class="col bttn" onclick="clrEntry('all')">AC</div>
-                            <div class="col bttn" onclick="equalTo()">=</div>
+                    <div class="container calcButtons">
+                        <div class="row text-center">
+                            <div class="col bttn" onclick="numToScreen('7')">7</div>
+                            <div class="col bttn" onclick="numToScreen('8')">8</div>
+                            <div class="col bttn" onclick="numToScreen('9')">9</div>
+                            <div title="Divide" class="col bttn" onclick="operation('divide')">/</div>
                         </div>
-                </div> <!-- calcButtons -->
-            </div> <!-- calcBody -->
+                        <div class="row text-center">
+                            <div class="col bttn" onclick="numToScreen('4')">4</div>
+                            <div class="col bttn" onclick="numToScreen('5')">5</div>
+                            <div class="col bttn" onclick="numToScreen('6')">6</div>
+                            <div title="Multiply" class="col bttn" onclick="operation('multiply')">*</div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col bttn" onclick="numToScreen('1')">1</div>
+                            <div class="col bttn" onclick="numToScreen('2')">2</div>
+                            <div class="col bttn" onclick="numToScreen('3')">3</div>
+                            <div title="Subtract" class="col bttn" onclick="operation('minus')">-</div>
+                        </div>
+                        <div class="row text-center">
+                            <div title="Clear current entry" class="col bttn" onclick="clrEntry('')">CE</div>
+                            <div class="col bttn" onclick="numToScreen('0')">0</div>
+                            <div title="Decimal" class="col bttn" onclick="numToScreen('.')">.</div>
+                            <div title="Add" class="col bttn" onclick="operation('plus')">+</div>
+                        </div>
+                        <div class="row text-center">
+                                <div title="Clear all user inputs" class="col bttn" 
+                                    onclick="clrEntry('all')">AC</div>
+                                <div title="Equal" class="col bttn" onclick="equalTo()">=</div>
+                        </div>
+                    </div> <!-- calcButtons -->
+                </div> <!-- calcBody -->
+            </div> 
             <div class="col"></div>
             <div class="col"></div>
         </div>
