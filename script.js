@@ -19,12 +19,14 @@ function clrEntry(alsoNums) {
     }
 }
 
+// add a backspace button and maybe a +/- button
+
 function numToScreen(btnNum) {
    operationInfo.entry += btnNum
     
-    //operationInfo.entry = operationInfo.entry.replace(/[.]+/, '.')
-    //operationInfo.entry = operationInfo.entry.replace(/^[0]([1-9])/, '$1')
-    // Decide on a way to get rid of additional places where zeroes can be added.
+    operationInfo.entry = operationInfo.entry.replace(/^[.]+/, '0.')
+    operationInfo.entry = operationInfo.entry.replace(/([.]\d+)[.]+/, '$1')
+
     $('.calcScreen').text( operationInfo.entry )
 }
 
@@ -37,6 +39,7 @@ function operation(operator, forEqual = false) {
     else if ( operationInfo.operator == 'plus' ){
         let save = Number( operationInfo.entry )
         operationInfo.firstOperand += save
+        
         if ( forEqual && !operationInfo.entry ) {
             operationInfo.firstOperand += operationInfo.last
         }
@@ -45,14 +48,15 @@ function operation(operator, forEqual = false) {
     else if ( operationInfo.operator == 'minus' ){
         let save = Number( operationInfo.entry )
         operationInfo.firstOperand -= save
+
         if ( forEqual && !operationInfo.entry ) {
             operationInfo.firstOperand -= operationInfo.last
         }
         commonEntryAndSave( save )
     }
     else if ( operationInfo.operator == 'multiply' ){
-        let save //= Number( operationInfo.entry )
-        // operationInfo.firstOperand *= save
+        let save 
+
         if ( forEqual && !operationInfo.entry ) {
             operationInfo.firstOperand *= operationInfo.last
         }
@@ -63,8 +67,8 @@ function operation(operator, forEqual = false) {
         commonEntryAndSave( save )
     }   
     else if ( operationInfo.operator == 'divide' ){
-        let save //= Number( operationInfo.entry )
-        // operationInfo.firstOperand *= save
+        let save
+
         if ( forEqual && !operationInfo.entry ) {
             operationInfo.firstOperand /= operationInfo.last
         }
@@ -83,37 +87,9 @@ function operation(operator, forEqual = false) {
 
         operationInfo.last = save || operationInfo.last
     }
-
-    console.log(operationInfo)
 }
 
 function equalTo () {
     operation( operationInfo.operator, true )
-    //#region old code for equal. May not need soon. 
-    // let save = Number(operationInfo.entry)
-    // operationInfo.frstOperand += save + Number(operationInfo.last)
-    
-
-    // clrEntry()
-    // numToScreen( operationInfo.frstOperand.toString() )
-
-    // operationInfo.entry = save
-    // operationInfo.operator = oprtr  
-    // console.log(operationInfo)
-    //#endregion
 }
 
-/*
-
-operand is entered (key presses result in new numbers being displayed on the screen)
-
-operator is entered (screen shows zero as its ready to receive another operand, operator is saved)
-
-second operand is entered (key presses show on the screen for the second operand)
-
-another operation is entered or equal is entered
-
-if equal then that displays the result and resets any saved values
-if another operation then the result is shown and another number will be taken to perform that operation
-
-*/
