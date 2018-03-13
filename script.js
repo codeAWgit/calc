@@ -7,7 +7,7 @@ let operationInfo = {
                     }
 
 function clrEntry(alsoNums) {
-    $('.calcScreen').text('0')
+    $('.calcScreen').text('0')   // May consider removing small amount of jQuery.
     operationInfo.entry = ''   
     if (alsoNums) {
         operationInfo = { 
