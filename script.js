@@ -26,6 +26,11 @@ function numToScreen(btnNum) {
     
     operationInfo.entry = operationInfo.entry.replace(/^[.]+/, '0.')
     operationInfo.entry = operationInfo.entry.replace(/([.]\d+)[.]+/, '$1')
+    //operationInfo.entry = operationInfo.entry.length > 15 ? 
+                            //operationInfo.entry.toExponential() : operationInfo.entry
+    operationInfo.entry = operationInfo.entry.replace(/(\d{9})\d+([e][+]?\d+)/, '$1$2')
+    operationInfo.entry = operationInfo.entry.replace(/([.]\d{9})\d+([e][-]?\d+)/, '$1$2')
+    operationInfo.entry = operationInfo.entry.substr(0,15)
 
     document.getElementsByClassName('calcScreen')[0].innerHTML = operationInfo.entry
 }
